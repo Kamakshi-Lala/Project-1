@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap');
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contact.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+
+<header>
+    <h2 class="moneyminder">Money Minder</h2>
+    <nav class="navigation">
+        <a href="index.html">Home</a>
+        <a href="home.html">Features</a>
+        <a href="#">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<div class="form-box contact">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+        <div class="input-box">
+            <span class="icon">
+                <ion-icon name="person"></ion-icon>
+            </span>
+            <input type="text" id="contactName" required>
+            <label>Your Name</label>
+        </div>
+        <div class="input-box">
+            <span class="icon">
+                <ion-icon name="mail"></ion-icon>
+            </span>
+            <input type="email" id="contactEmail" required>
+            <label>Your Email</label>
+        </div>
+        <div class="input-box">
+            <span class="icon">
+                <ion-icon name="chatbubbles"></ion-icon>
+            </span>
+            <textarea id="contactMessage" required></textarea>
+            <label>Your Message</label>
+        </div>
+        <button type="button" class="btn" id="sendEmailButton">Send Email</button>
+    </form>
+</div>
+
+</body>
+
+<script type="module" src="contact.js" defer></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+    (function () {
+        emailjs.init('Vtt9I8P44WY26hy78'); // Replace with your Email.js public key
+    })();
+
+    window.addEventListener('DOMContentLoaded', function () {
+        const sendEmailButton = document.getElementById('sendEmailButton');
+
+        sendEmailButton.addEventListener('click', function () {
+            sendEmail();
+        });
+    });
+
+    function sendEmail() {
+        const contactForm = document.getElementById('contactForm');
+        emailjs.sendForm('service_jku7fzx', 'template_as2f3gb', contactForm)
+            .then(function (response) {
+                console.log('Email sent successfully:', response);
+                alert('Email sent successfully!');
+                // You can redirect to a thank you page or perform other actions upon successful submission.
+            })
+            .catch(function (error) {
+                console.error('Error sending email:', error);
+                alert('Error sending email. Please try again.');
+            });
+    }
+</script>
+
+</html>
